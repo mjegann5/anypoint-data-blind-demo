@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:cw="http://www.mulesoft.org/schema/mule/cw"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/cw http://www.mulesoft.org/schema/mule/cw/current/mule-cw.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<cw:config name="CW_Config" doc:name="CW Config" doc:id="8fa3b7d4-465a-46fc-b09c-57c3999742dc" encryptionKey='#["1234567812345678"]' licenseKey='#["Free Trail"]' />
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="90e14786-fd0f-4e1b-8b95-a4918dbc11a3" basePath="/" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+</mule>
