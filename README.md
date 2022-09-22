@@ -6,15 +6,15 @@
 
 2. Import the project into Anypoint Studio
 
-3. Get the temporary datablind.repo.authtoken from Kavi Software
+3. Get a trial token from Kavi Software. This will be the value for datablind.repo.authtoken in the mvn command.
 
 5. Run the following command at the project root: 
 
     mvn -s settings.xml -Ddatablind.repo.authtoken=*********************** install
 
-    This will install the required reepositories
+    This will install the required repositories
 
-6. Run the Mule Application in Anypoint studio
+6. In Anypoint Studio, Run the Demo as a Mule Application
 
 7. Use the postman collection to send a request to Demo App
 
