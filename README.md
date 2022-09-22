@@ -1,6 +1,6 @@
 # anypoint-data-blind-demo
 
-## How to usee this demo app
+## Steps to use this demo app
 
 1. Clone the repo to your desktop
 
