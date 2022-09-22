@@ -17,4 +17,5 @@
 6. Run the Mule Application in Anypoint studio
 
 7. Use the postman collection to send a request to Demo App
-    Compare the request and response JSON messages. The reponse will show the encrypted fields. 
+
+    Compare the request and response JSON messages. The response JSON will show the encrypted fields. 
