@@ -10,10 +10,11 @@
 
 5. Run the following command at the project root: 
 
-mvn -s settings.xml -Ddatablind.repo.authtoken=*********************** install
+    mvn -s settings.xml -Ddatablind.repo.authtoken=*********************** install
 
-This will install the required reepositories
+    This will install the required reepositories
 
 6. Run the Mule Application in Anypoint studio
+
 7. Use the postman collection to send a request to Demo App
-Compare the request and response JSON messages. The reponse will show the encrypted fields. 
+    Compare the request and response JSON messages. The reponse will show the encrypted fields. 
