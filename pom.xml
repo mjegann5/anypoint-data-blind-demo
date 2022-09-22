@@ -4,7 +4,7 @@
 
 	<groupId>com.mycompany</groupId>
 	<artifactId>cwtest</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 	<packaging>mule-application</packaging>
 
 	<name>anypoint-data-blind-demo</name>
@@ -15,6 +15,7 @@
 
 		<app.runtime>4.3.0</app.runtime>
 		<mule.maven.plugin.version>3.5.4</mule.maven.plugin.version>
+		<datablind.exchange.groupId>087be403-83ed-4643-9c36-cd33bf4d0423</datablind.exchange.groupId>
 	</properties>
 
 	<build>
@@ -32,13 +33,13 @@
 				<configuration>
 					<additionalPluginDependencies>
 						<plugin>
-							<groupId>087be403-83ed-4643-9c36-cd33bf4d0423</groupId>
+							<groupId>${datablind.exchange.groupId}</groupId>
 							<artifactId>cwconnector</artifactId>
 							<additionalDependencies>
 								<dependency>
 									<groupId>io.cipherworks</groupId>
 									<artifactId>cwdatacrypt</artifactId>
-									<version>0.0.5</version>
+									<version>1.0.7</version>
 								</dependency>
 							</additionalDependencies>
 						</plugin>
@@ -63,14 +64,9 @@
 			<classifier>mule-plugin</classifier>
 		</dependency>
 		<dependency>
-			<groupId>io.cipherworks</groupId>
-			<artifactId>cwdatacrypt</artifactId>
-			<version>0.0.5</version>
-		</dependency>
-		<dependency>
-			<groupId>087be403-83ed-4643-9c36-cd33bf4d0423</groupId>
+			<groupId>${datablind.exchange.groupId}</groupId>
 			<artifactId>cwconnector</artifactId>
-			<version>1.0.6</version>
+			<version>1.0.16</version>
 			<classifier>mule-plugin</classifier>
 		</dependency>
 	</dependencies>
@@ -89,7 +85,7 @@
 			<layout>default</layout>
 		</repository>
 		<repository>
-			<id>cwrepo</id>
+			<id>datablindrepo</id>
 			<name>GitHub OWNER Apache Maven Packages</name>
 			<url>https://maven.pkg.github.com/mjegann5/Securebort</url>
 		</repository>
