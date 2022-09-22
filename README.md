@@ -1,6 +1,6 @@
 # anypoint-data-blind-demo
 
-In order to use this demo app, you should first deploy the [Data Blind connector](https://github.com/mjegann5/anypoint-data-blind-connector) in your exchange. 
+In order to use this demo app, you should first publish the [Data Blind connector](https://github.com/mjegann5/anypoint-data-blind-connector) in your exchange. Please visit [Data Blind connector](https://github.com/mjegann5/anypoint-data-blind-connector) for instruction for publishing.
 
 ## Steps to use this demo app
 
