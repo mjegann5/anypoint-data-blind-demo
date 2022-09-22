@@ -1,13 +1,19 @@
 # anypoint-data-blind-demo
 
-## Clone the repo
+## How to usee this demo app
 
-## import the project into Anypoint Studio
+1. Clone the repo to your desktop
 
-## install the required reepositories
+2. Import the project into Anypoint Studio
 
-Run the command at the project root:
+3. Get the temporary datablind.repo.authtoken from Kavi Software
+
+5. Run the following command at the project root: 
+
 mvn -s settings.xml -Ddatablind.repo.authtoken=*********************** install
-Contact Kavi Software to get a trial token 
 
-## Run the Mule Application and use the postman collection to test Data Blind
+This will install the required reepositories
+
+6. Run the Mule Application in Anypoint studio
+7. Use the postman collection to send a request to Demo App
+Compare the request and response JSON messages. The reponse will show the encrypted fields. 
