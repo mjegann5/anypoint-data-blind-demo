@@ -6,7 +6,10 @@ In order to use this demo app, you should first publish the [Data Blind connecto
 
 1. Clone the repo to your desktop
 
-2. Import the project into Anypoint Studio
+2. Import the project into Anypoint Studio 
+        Studio version : v7.12.1
+        Maven: Embedded Maven v3.6.3
+        Java: Embedded Java JDK 8
 
 3. In pom.xml, modify the value for datablind.exchange.groupId
 
