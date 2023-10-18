@@ -8,95 +8,17 @@ http://www.mulesoft.org/schema/mule/weather http://www.mulesoft.org/schema/mule/
 http://www.mulesoft.org/schema/mule/cw http://www.mulesoft.org/schema/mule/cw/current/mule-cw.xsd
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
 http://www.mulesoft.org/schema/mule/crypto http://www.mulesoft.org/schema/mule/crypto/current/mule-crypto.xsd">
-	<flow name="blind" doc:id="63027f4d-c4e2-497e-8e8b-44c1ff7713af" >
-            <http:listener doc:name="Listener" doc:id="06128abe-5d35-47c8-8605-574639a51c7e" path="/blind" allowedMethods="GET" config-ref="HTTP_Listener_config"/>
-		<set-variable value="#[payload]" doc:name="Sensitive Data" doc:id="629edc9f-5460-4628-a72e-3fa976b3fbab" variableName="data"/>
-		<set-variable value='#["12345"]' doc:name="Tweak" doc:id="518bfe6a-3f9c-4e03-93bc-da740456d625" variableName="tweak"/>
-		<flow-ref doc:name="Encrypt" doc:id="abac401f-bffb-437b-ab2a-d08d5f9e9091" name="encrypt"/>
-		<set-payload value="#[{&#10;	data : vars.blindData,&#10;	json: vars.encryptedJSON&#10;}]" doc:name="Blind Data" doc:id="0e0ed694-47c3-4261-a921-fa1fb2c1ae9c" />
-		<logger level="INFO" doc:name="Logger" doc:id="45bf1395-5c68-43b5-a28b-49f8a1b8f3b2" message="#[payload]"/>
-      
-</flow>
-	<flow name="clear" doc:id="f6a1376e-072a-48f2-a065-9f8afd13b1f4" >
-		<http:listener doc:name="Listener" doc:id="21bcf3f6-7d67-4de3-893a-2130535a15af" config-ref="HTTP_Listener_config" path="/clear"/>
-		<set-variable value="#[payload]" doc:name="Blind Data" doc:id="cd333542-30aa-4523-8fb0-f4a46532afa8" variableName="blindData" />
-		<set-variable value='#["12345"]' doc:name="Tweak" doc:id="4832418d-90f3-4c0f-a0b8-c1e9c380e849" variableName="tweak" />
-		<flow-ref doc:name="Decrypt" doc:id="8b74502b-a3cf-4e8a-942c-26b188744e60" name="decrypt" />
-		<set-payload value="#[vars.data]" doc:name="Sensitive Data" doc:id="c9cc642c-7844-4004-ab72-0456e27b10b9" />
-		<logger level="INFO" doc:name="Logger" doc:id="fdd8300f-509a-4501-98ae-62c62bb67099" message="#[payload]" />
-	</flow>
 	<flow name="blindJSON" doc:id="2320e0de-0214-42ef-8252-da76d34a55af" >
 		<http:listener doc:name="Copy_of_Listener" doc:id="80124f62-ee35-40df-9439-4a8ddde85fc2" config-ref="HTTP_Listener_config" path="/blindJSON" allowedMethods="GET" />
 		<set-variable value='#["12345"]' doc:name="Tweak" doc:id="5222c65d-7d9c-4fbc-a93c-3aa49931e7f9" variableName="tweak" />
-		<cw:encrypt-json doc:name="Encrypt json" doc:id="9580ce43-c3c8-4843-adfa-12924cacc4a8" config-ref="CW_Config" sensitiveFields="#[write(payload.SensitiveFields, 'application/json')]" sensitiveJson="#[write(payload.SensitiveJSON, 'application/json')]" tweak="#[vars.tweak]" />
-	</flow>
+		<cw:encrypt-json doc:name="Encrypt json" doc:id="cfad5aee-5682-4a30-91c9-8675cac6919d" config-ref="CW_Config" arg1="#[write(payload.SensitiveFields, 'application/json')]" arg2="#[write(payload.SensitiveJSON, 'application/json')]" arg3="#[vars.tweak]" arg4="#[payload.OverRideToken.token]" arg5="#[payload.OverRideToken.passPhrase]"/>
+	
+</flow>
 	<flow name="clearJSON" doc:id="8fcf8e85-511c-4474-8378-e4e6acfde524" >
-		<http:listener doc:name="Copy_of_Listener" doc:id="a5d62a39-1576-4d3b-8d47-a56ec3bef141" config-ref="HTTP_Listener_config" path="/clearJSON" />
+		<http:listener doc:name="Listener" doc:id="a5d62a39-1576-4d3b-8d47-a56ec3bef141" config-ref="HTTP_Listener_config" path="/clearJSON" />
 		<set-variable value='#["12345"]' doc:name="Tweak" doc:id="f7286e2b-82c8-4c86-a8f1-683d13327479" variableName="tweak" />
-		<cw:decrypt-json doc:name="Decrypt json" doc:id="85c80734-462f-4d9a-b4c8-040a4280e3a7" config-ref="CW_Config" sensitiveFields="#[write(payload.SensitiveFields, 'application/json')]" encryptedJson="#[write(payload.SensitiveJSON, 'application/json')]" tweak="#[vars.tweak]"/>
-	</flow>
-	<sub-flow name="decrypt" doc:id="92213ce5-c758-49b4-90a4-ccc5cee8a987" >
-		<cw:decrypt doc:name="PhoneNumber" doc:id="a08734bb-6217-4939-8ed7-147dde19b7c0" dataType="Phone Number" mockValue="#[vars.blindData.phone]" tweak="#[vars.tweak]" config-ref="CW_Config" target="PhoneNumber"/>
-		<cw:decrypt doc:name="Name" doc:id="c6f330f5-d2b2-47f7-84a6-e4aaf9adaf83" dataType="Person Name" mockValue="#[vars.blindData.name]" tweak="#[vars.tweak]" target="Name" config-ref="CW_Config"/>
-		<cw:decrypt doc:name="CreditCard Number" doc:id="01d562aa-db79-4723-b60d-a60f67f56b0d" dataType="Credit Card Number" mockValue="#[vars.blindData.creditCard]" tweak="#[vars.tweak]" target="CreditCardNumber" config-ref="CW_Config"/>
-		<cw:decrypt doc:name="Curreny Amount" doc:id="8425cddc-8fd2-449e-b0c3-7b73940b89c7" dataType="Currency Amount" mockValue="#[vars.blindData.amount]" tweak="#[vars.tweak]" target="CurrenyAmount" config-ref="CW_Config"/>
-		<cw:decrypt doc:name="Date" doc:id="050b66e4-7f49-4e2e-9d9e-bc212ec98db7" dataType="Date (MM/dd/yyyy)" mockValue="#[vars.blindData.dob]" tweak="#[vars.tweak]" target="Date" config-ref="CW_Config"/>
-		<cw:decrypt doc:name="DateTime" doc:id="1deea6b8-c8d3-41a6-9a6c-f366f7f51e48" dataType="DateTime (MM/dd/yyyy HH:mm:ss)" mockValue="#[vars.blindData.arrivalTime]" tweak="#[vars.tweak]" target="DateTime" config-ref="CW_Config"/>
-		<cw:decrypt doc:name="Email Address" doc:id="692b5d52-c992-408d-800e-a94394576e0b" dataType="Email Address" mockValue="#[vars.blindData.email]" tweak="#[vars.tweak]" target="EmailAddress" config-ref="CW_Config"/>
-		<cw:decrypt doc:name="GPS Coordinate" doc:id="b4663565-22a7-4e26-a81c-f6a2b8580d45" dataType="GPS" mockValue="#[vars.blindData.gps]" tweak="#[vars.tweak]" target="gps" config-ref="CW_Config"/>
-		<cw:decrypt dataType="IP Address (v4)" doc:name="IP Address" doc:id="ca6506c5-8fce-444c-919f-a9b2fdf03af3" mockValue="#[vars.blindData.IPaddress]" tweak="#[vars.tweak]" target="IPAddress" config-ref="CW_Config"/>
-		<cw:decrypt dataType="SSN" doc:name="SSN" doc:id="f9c8cedd-1c2f-427a-8242-95bb811f4c24" mockValue="#[vars.blindData.ssn]" tweak="#[vars.tweak]" target="SSN" config-ref="CW_Config"/>
-		<cw:decrypt dataType="Street Address" doc:name="Address" doc:id="7ca502ad-4321-4cb0-8313-5a511b1e0758" mockValue="#[vars.blindData.address]" tweak="#[vars.tweak]" target="Address" config-ref="CW_Config"/>
-		<cw:decrypt dataType="UPC-A" doc:name="UPC-A" doc:id="79341a58-c8aa-44ec-ab11-2d8cc9bf1002" mockValue="#[vars.blindData.upcA]" tweak="#[vars.tweak]" target="UPC" config-ref="CW_Config"/>
-
-		<set-variable value='#[%dw 2.0
-output application/json
----
-{
-	name: vars.Name,
-	dob: vars.Date,
-	arrivalTime: vars.DateTime,
-	ssn: vars.SSN,
-	address: vars.Address,
-	phone: vars.PhoneNumber,
-	creditCard: vars.CreditCardNumber,
-	IPaddress: vars.IPAddress,
-	upcA: vars.UPC,
-	email: vars.EmailAddress,
-	gps: vars.gps,
-	amount: vars.CurrenyAmount
-}]' doc:name="Sensitive Data" doc:id="45362da8-c1bb-448b-a92c-e5d1cddafd37" variableName="data" />
-	</sub-flow>
-	<sub-flow name="encrypt" doc:id="b5ca550e-8bf2-4ce7-9289-e5dcbb41e1d0" >
-		<cw:encrypt dataType="Phone Number" doc:name="PhoneNumber" doc:id="b0aa9fe1-98d4-4315-b7a9-40cc4edcf8c1" value='#[vars.data.phone]' tweak="#[vars.tweak]" target="PhoneNumber" config-ref="CW_Config"/>
-		<cw:encrypt dataType="Person Name" doc:name="Name" doc:id="d133298d-ac37-4921-9cc5-083ff03c53cb" value="#[vars.data.name]" tweak="#[vars.tweak]" target="Name" config-ref="CW_Config"/>
-		<cw:encrypt dataType="Credit Card Number" doc:name="CreditCard Number" doc:id="57050a5a-ad33-4640-b5d9-81695298618f" value="#[vars.data.creditCard]" tweak="#[vars.tweak]" target="CreditCardNumber" config-ref="CW_Config"/>
-		<cw:encrypt dataType="Currency Amount" doc:name="Curreny Amount" doc:id="7484b0ea-c60c-495d-9f98-74bbbb69134a" value="#[vars.data.amount]" tweak="#[vars.tweak]" target="CurrenyAmount" config-ref="CW_Config"/>
-		<cw:encrypt dataType="Date (MM/dd/yyyy)" doc:name="Date" doc:id="84d90871-efe7-448c-881e-c37d9e032402" value="#[vars.data.dob]" tweak="#[vars.tweak]" target="Date" config-ref="CW_Config"/>
-		<cw:encrypt dataType="DateTime (MM/dd/yyyy HH:mm:ss)" doc:name="DateTime" doc:id="4b08aa1d-a917-4e90-9eef-01252799e9f1" value="#[vars.data.arrivalTime]" tweak="#[vars.tweak]" target="DateTime" config-ref="CW_Config"/>
-		<cw:encrypt dataType="Email Address" doc:name="Email Address" doc:id="6da0a274-379c-4e1f-b368-a3a455dac1d5" value="#[vars.data.email]" tweak="#[vars.tweak]" target="EmailAddress" config-ref="CW_Config"/>
-		<cw:encrypt dataType="GPS" doc:name="GPS Coordinate" doc:id="d4b6a7a9-c6d4-41b5-9109-573d7898453c" value="#[vars.data.gps]" tweak="#[vars.tweak]" target="gps" config-ref="CW_Config"/>
-		<cw:encrypt dataType="IP Address (v4)" doc:name="IP Address" doc:id="1789c0dd-ae35-45e3-8260-84a94bc9d76b" value="#[vars.data.IPaddress]" tweak="#[vars.tweak]" target="IPAddress" config-ref="CW_Config"/>
-		<cw:encrypt dataType="SSN" doc:name="SSN" doc:id="3c4fffda-ead0-4108-ba4d-c941eacd74f5" value="#[vars.data.ssn]" tweak="#[vars.tweak]" target="SSN" config-ref="CW_Config"/>
-		<cw:encrypt dataType="Street Address" doc:name="Address" doc:id="d12b5ec5-7df8-43f2-a023-d8b6e0c6f33a" value="#[vars.data.address]" tweak="#[vars.tweak]" target="Address" config-ref="CW_Config"/>
-		<cw:encrypt dataType="UPC-A" doc:name="UPC-A" doc:id="7da4c2bf-70b5-4d11-9d26-010eb22c5331" value="#[vars.data.upcA]" tweak="#[vars.tweak]" target="UPC" config-ref="CW_Config"/>
-		<set-variable value="#[%dw 2.0
-output application/json
----
-{
-	name: vars.Name,
-	dob: vars.Date,
-	arrivalTime: vars.DateTime,
-	ssn: vars.SSN,
-	address: vars.Address,
-	phone: vars.PhoneNumber,
-	creditCard: vars.CreditCardNumber,
-	IPaddress: vars.IPAddress,
-	upcA: vars.UPC,
-	email: vars.EmailAddress,
-	gps: vars.gps,
-	amount: vars.CurrenyAmount
-}]" doc:name="Blind Data" doc:id="c5f28a5b-4eb7-4ecf-8b24-4d825a831417" variableName="blindData" />
-	</sub-flow>
+		<cw:decrypt-json doc:name="Decrypt json" doc:id="d43c53ce-95e9-4ed6-bf2d-9d3f0b8d1227" config-ref="CW_Config" arg5="#[payload.OverRideToken.passPhrase]" arg1="#[write(payload.SensitiveFields, 'application/json')]" arg2="#[write(payload.SensitiveJSON, 'application/json')]" arg3="#[vars.tweak]" arg4="#[payload.OverRideToken.token]"/>
+	
+</flow>
 
 </mule>

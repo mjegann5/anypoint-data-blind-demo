@@ -4,7 +4,7 @@
 
 	<groupId>com.mycompany</groupId>
 	<artifactId>cwtest</artifactId>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 	<packaging>mule-application</packaging>
 
 	<name>anypoint-data-blind-demo</name>
@@ -39,7 +39,7 @@
 								<dependency>
 									<groupId>io.cipherworks</groupId>
 									<artifactId>cwdatacrypt</artifactId>
-									<version>1.0.7</version>
+									<version>1.0.8</version>
 								</dependency>
 							</additionalDependencies>
 						</plugin>
@@ -66,7 +66,7 @@
 		<dependency>
 			<groupId>${datablind.exchange.groupId}</groupId>
 			<artifactId>cwconnector</artifactId>
-			<version>1.0.17</version>
+			<version>1.0.20</version>
 			<classifier>mule-plugin</classifier>
 		</dependency>
 	</dependencies>
