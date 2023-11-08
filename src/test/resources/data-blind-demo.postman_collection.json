@@ -1,68 +1,11 @@
 {
 	"info": {
-		"_postman_id": "6aaf36cf-03b1-4d3a-8426-891a513aaaa3",
-		"name": "data-blind-demo",
+		"_postman_id": "8d317bbb-ae86-4958-beaf-ddeccd654bec",
+		"name": "anypoint-data-blind-demo",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "8871719"
 	},
 	"item": [
-		{
-			"name": "blind- GET",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "X-Correlation-ID",
-						"type": "text",
-						"value": "valurcorid"
-					},
-					{
-						"key": "client_Id",
-						"type": "text",
-						"value": "2715b51ff990432fb1a904957ecbebd4"
-					},
-					{
-						"key": "client_secret",
-						"type": "text",
-						"value": "8fDd95b8F0Bb486f8620B7C1C39bC23e"
-					},
-					{
-						"key": "user_ctx_Id",
-						"type": "text",
-						"value": "website"
-					},
-					{
-						"key": "user_ctx_desc",
-						"type": "text",
-						"value": "Optonal User Contect Cookmedica website "
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Jegan Mehalingam\",\n\t\"dob\": \"10/25/1970\",\n\t\"arrivalTime\": \"10/25/1970 12:34:56\",\n\t\"ssn\": \"054-87-3876\",\n\t\"address\": \"245 First Street\",\n\t\"phone\": \"678-3656-9876\",\n\t\"creditCard\": \"5585880970101702\",\n\t\"IPaddress\": \"172.16.254.1\",\n\t\"upcA\": \"036000291452\",\n\t\"email\": \"bigboss@duckpond.com\",\n    \"amount\": 15205.25,\n\t\"gps\": \"40 41 21.4,74 02 40.2\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8081/blind",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"blind"
-					]
-				}
-			},
-			"response": []
-		},
 		{
 			"name": "blindJSON- GET",
 			"protocolProfileBehavior": {
@@ -73,33 +16,23 @@
 				"header": [
 					{
 						"key": "X-Correlation-ID",
-						"type": "text",
-						"value": "valurcorid"
+						"value": "valurcorid",
+						"type": "text"
 					},
 					{
-						"key": "client_Id",
-						"type": "text",
-						"value": "2715b51ff990432fb1a904957ecbebd4"
+						"key": "overRideToken",
+						"value": "202311081658090d0c86c416f1c2bdbe41bfe1965f4d7d0f5470e65591f490621b5e3ef372716c",
+						"type": "text"
 					},
 					{
-						"key": "client_secret",
-						"type": "text",
-						"value": "8fDd95b8F0Bb486f8620B7C1C39bC23e"
-					},
-					{
-						"key": "user_ctx_Id",
-						"type": "text",
-						"value": "website"
-					},
-					{
-						"key": "user_ctx_desc",
-						"type": "text",
-						"value": "Optonal User Contect Cookmedica website "
+						"key": "tokenPassPhrase",
+						"value": "firstTest",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"OverRideToken\" :{\n        \"token\" : \"2026071415503735a5a0d2e5fae15781e0633c483c0b47f7e6a6fa5232e1465f25244c4f447b4a\",\n        \"passPhrase\" : \"message\"\n    },\n    \"SensitiveFields\" : {\n        \"accounting.lastName\" : \"FE:PersonName\",\n        \"accounting.firstName\" : \"AES:CBC\",\n        \"accounting.age\" : \"MASK:#\",\n        \"phoneNumber\" : \"FE:PhoneNumber\"\n    },\n    \"SensitiveJSON\" : {\n \t    \"accounting\" : \n \t\t[   \n \t\t\t{ \n \t\t\t\"firstName\" : \"John\",  \n \t\t\t\"lastName\"  : \"Doe\",\n \t\t\t\"age\"       : 23 \n \t\t\t},\n\t\t\t{\n\t\t\t\"firstName\" : \"Mary\",  \n \t\t\t\"lastName\"  : \"Smith\",\n \t\t\t\"age\"      : 32 \n \t\t\t}\n \t\t],                           \n\t    \"sales\": \n\t\t[ \n  \t\t\t{ \n  \t\t\t\"firstName\" : \"Sally\",\n  \t\t\t\"lastName\"  : \"Green\",\n  \t\t\t\"age\"      : 27 \n \t\t\t}, \n  \t\t\t{ \n  \t\t\t\"firstName\" : \"Jim\", \n  \t\t\t\"lastName\"  : \"Galley\",\n  \t\t\t\"age\"       : 41 \n  \t\t\t}\n  \t\t],\n  \t    \"companyName\" : \"First & Best Corporation\",\n  \t    \"address\" : \"Street1, City, State, Country\",\n  \t    \"phoneNumber\" : \"123456789\"\n    }\n}",
+					"raw": "{\n    \"SensitiveFields\" : {\n        \"accounting.lastName\" : \"FE:PersonName\",\n        \"accounting.firstName\" : \"AES:CBC\",\n        \"accounting.age\" : \"MASK:#\",\n        \"phoneNumber\" : \"FE:PhoneNumber\"\n    },\n    \"SensitiveJSON\" : {\n \t    \"accounting\" : \n \t\t[   \n \t\t\t{ \n \t\t\t\"firstName\" : \"John\",  \n \t\t\t\"lastName\"  : \"Doe\",\n \t\t\t\"age\"       : 23 \n \t\t\t},\n\t\t\t{\n\t\t\t\"firstName\" : \"Mary\",  \n \t\t\t\"lastName\"  : \"Smith\",\n \t\t\t\"age\"      : 32 \n \t\t\t}\n \t\t],                           \n\t    \"sales\": \n\t\t[ \n  \t\t\t{ \n  \t\t\t\"firstName\" : \"Sally\",\n  \t\t\t\"lastName\"  : \"Green\",\n  \t\t\t\"age\"      : 27 \n \t\t\t}, \n  \t\t\t{ \n  \t\t\t\"firstName\" : \"Jim\", \n  \t\t\t\"lastName\"  : \"Galley\",\n  \t\t\t\"age\"       : 41 \n  \t\t\t}\n  \t\t],\n  \t    \"companyName\" : \"First & Best Corporation\",\n  \t    \"address\" : \"Street1, City, State, Country\",\n  \t    \"phoneNumber\" : \"123456789\"\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -121,7 +54,7 @@
 			"response": []
 		},
 		{
-			"name": "blindJSON- GET Fiserv",
+			"name": "createToken",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -156,7 +89,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"SensitiveFields\" : {\n        \"fiservResponse.PartyListRec.PersonPartyListInfo.Contact.PostAddr.FullName1\" : \"Person Name\",\n        \"fiservResponse.PartyListRec.PersonPartyListInfo.PersonName.FullName\" : \"Person Name\"\n\n    },\n    \"SensitiveJSON\" : \n{\n    \"fiservResponse\": {\n        \"Status\": {\n            \"StatusCode\": \"0\",\n            \"StatusDesc\": \"Success\",\n            \"Severity\": \"Info\",\n            \"SvcProviderName\": \"Signature\"\n        },\n        \"RecCtrlOut\": {\n            \"SentRecCount\": 1,\n            \"MatchedRecCount\": 0\n        },\n        \"PartyListRec\": [\n            {\n                \"PartyKeys\": {\n                    \"PartyId\": \"0000952029\"\n                },\n                \"PersonPartyListInfo\": {\n                    \"PartyType\": \"Customer\",\n                    \"Contact\": [\n                        {\n                            \"PhoneNum\": {\n                                \"PhoneType\": \"Mobile\",\n                                \"Phone\": \"+1-808-8889167\",\n                                \"PreferredPhone\": true,\n                                \"DoNotContactInd\": false,\n                                \"PhoneDesc\": \"Cellular Phone Number\",\n                                \"UpDt\": \"2022-08-10T00:00:00.000\"\n                            }\n                        },\n                        {\n                            \"PostAddr\": {\n                                \"AddrUse\": \"Personal\",\n                                \"AddrUseEnumDesc\": \"Personal\",\n                                \"AddrFormatType\": \"Parsed\",\n                                \"FullName1\": \"ADRIAN TEST\",\n                                \"HouseNum\": \"123\",\n                                \"Street\": \"N CENTRAL\",\n                                \"LabelAddr\": {\n                                    \"Addr1\": \"123 N CENTRAL\"\n                                },\n                                \"AddrDefinedData\": [\n                                    {\n                                        \"DataIdent\": \"None\"\n                                    }\n                                ],\n                                \"City\": \"HONOLULU\",\n                                \"StateProv\": \"HI\",\n                                \"PostalCode\": \"96810-0000\",\n                                \"AddrType\": \"Primary\"\n                            }\n                        }\n                    ],\n                    \"TaxIdent\": \"252342342\",\n                    \"OriginatingBranch\": \"140\",\n                    \"PersonName\": {\n                        \"NameType\": \"Primary\",\n                        \"FullName\": \"ADRIAN TEST\"\n                    },\n                    \"BirthDt\": \"2000-01-01\"\n                },\n                \"PartyStatus\": {\n                    \"PartyStatusCode\": \"Valid\",\n                    \"EffDt\": \"2022-09-02T19:19:38.898\"\n                }\n            }\n        ]\n    }\n}\n}",
+					"raw": "{\n   \n  \t    \"passPhrase\" : \"firstTest\",\n  \t    \"expirationSeconds\" : \"3600\"   \n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -164,71 +97,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/blindJSON",
+					"raw": "http://localhost:8081/createToken",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8081",
 					"path": [
-						"blindJSON"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "clear- GET",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "X-Correlation-ID",
-						"type": "text",
-						"value": "valurcorid"
-					},
-					{
-						"key": "client_Id",
-						"type": "text",
-						"value": "2715b51ff990432fb1a904957ecbebd4"
-					},
-					{
-						"key": "client_secret",
-						"type": "text",
-						"value": "8fDd95b8F0Bb486f8620B7C1C39bC23e"
-					},
-					{
-						"key": "user_ctx_Id",
-						"type": "text",
-						"value": "website"
-					},
-					{
-						"key": "user_ctx_desc",
-						"type": "text",
-						"value": "Optonal User Contect Cookmedica website "
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"Vkjxv Kamocjgifg\",\n    \"dob\": \"08/11/1930\",\n    \"arrivalTime\": \"05/03/2216 22:54:11\",\n    \"ssn\": \"276-93-7616\",\n    \"address\": \"7oG cx7ms 6mu6SF\",\n    \"phone\": \"947-1621-0043\",\n    \"creditCard\": \"8996575603484999\",\n    \"IPaddress\": \"084.087.199.013\",\n    \"upcA\": \"861831092899\",\n    \"email\": \"CmXGDEf@U7C18EKE.com\",\n    \"gps\": \"OperationFailed\",\n    \"amount\": \"318761.28\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8081/clear",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"clear"
+						"createToken"
 					]
 				}
 			},
@@ -270,7 +146,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"OverRideToken\" :{\n        \"token\" : \"2026071415503735a5a0d2e5fae15781e0633c483c0b47f7e6a6fa5232e1465f25244c4f447b4a\",\n        \"passPhrase\" : \"message\"\n    },\n    \"SensitiveFields\" : {\n        \"accounting.lastName\" : \"FE:PersonName\",\n        \"accounting.firstName\" : \"AES:CBC\",\n        \"accounting.age\" : \"MASK:#\",\n        \"phoneNumber\" : \"FE:PhoneNumber\"\n    },\n    \"SensitiveJSON\": {\n    \"accounting\": [\n        {\n            \"firstName\": \"ooQ9OqV3wIZeG+MkEk1KFw==\",\n            \"lastName\": \"Ees\",\n            \"age\": \"***************************\"\n        },\n        {\n            \"firstName\": \"/bbIa8Bzy76zsfqnUKWt7A==\",\n            \"lastName\": \"Edmgy\",\n            \"age\": \"***************************\"\n        }\n    ],\n    \"sales\": [\n        {\n            \"firstName\": \"Sally\",\n            \"lastName\": \"Green\",\n            \"age\": 27\n        },\n        {\n            \"firstName\": \"Jim\",\n            \"lastName\": \"Galley\",\n            \"age\": 41\n        }\n    ],\n    \"companyName\": \"First & Best Corporation\",\n    \"address\": \"Street1, City, State, Country\",\n    \"phoneNumber\": \"128388658\"\n    }\n}",
+					"raw": "{\n\t\n    \"SensitiveFields\" : {\n        \"accounting.lastName\" : \"FE:PersonName\",\n        \"accounting.firstName\" : \"AES:CBC\",\n        \"accounting.age\" : \"MASK:*\",\n        \"phoneNumber\" : \"FE:PhoneNumber\"\n    },\n    \"SensitiveJSON\": {\n\n    \"accounting\": [\n        {\n            \"firstName\": \"ooQ9OqV3wIZeG+MkEk1KFw==\",\n            \"lastName\": \"Ees\",\n            \"age\": \"***************************\"\n        },\n        {\n            \"firstName\": \"/bbIa8Bzy76zsfqnUKWt7A==\",\n            \"lastName\": \"Edmgy\",\n            \"age\": \"***************************\"\n        }\n    ],\n    \"sales\": [\n        {\n            \"firstName\": \"Sally\",\n            \"lastName\": \"Green\",\n            \"age\": 27\n        },\n        {\n            \"firstName\": \"Jim\",\n            \"lastName\": \"Galley\",\n            \"age\": 41\n        }\n    ],\n    \"companyName\": \"First & Best Corporation\",\n    \"address\": \"Street1, City, State, Country\",\n    \"phoneNumber\": \"128388658\"\n}\n}",
 					"options": {
 						"raw": {
 							"language": "json"

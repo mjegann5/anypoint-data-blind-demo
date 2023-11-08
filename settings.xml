@@ -16,7 +16,18 @@
            <password>${datablind.repo.authtoken}</password>
        </server>
 
-<!--         <server>
+    	<server>
+    		<id>anypoint-exchange-v2</id>
+    		<username>${anypoint_username}</username>
+    		<password>${anypoint_password}</password>
+		</server>
+<!--
+		<server>
+           <id>anypoint-exchange-v2</id>
+           <username>~~~Token~~~</username>
+           <password>${anypoint.authtoken}</password>
+       </server>
+         <server>
            <id>Exchange2</id>
            <username>~~~Token~~~</username>
            <password>${anypoint.authtoken}</password>
