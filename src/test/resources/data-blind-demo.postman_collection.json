@@ -21,7 +21,7 @@
 					},
 					{
 						"key": "overRideToken",
-						"value": "202311081658090d0c86c416f1c2bdbe41bfe1965f4d7d0f5470e65591f490621b5e3ef372716c",
+						"value": "20231126162819e9b4989210f8e12a0a27dac0921e8222fac548f45b95b4992e652600dceee009",
 						"type": "text"
 					},
 					{
@@ -32,7 +32,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"SensitiveFields\" : {\n        \"accounting.lastName\" : \"FE:PersonName\",\n        \"accounting.firstName\" : \"AES:CBC\",\n        \"accounting.age\" : \"MASK:#\",\n        \"phoneNumber\" : \"FE:PhoneNumber\"\n    },\n    \"SensitiveJSON\" : {\n \t    \"accounting\" : \n \t\t[   \n \t\t\t{ \n \t\t\t\"firstName\" : \"John\",  \n \t\t\t\"lastName\"  : \"Doe\",\n \t\t\t\"age\"       : 23 \n \t\t\t},\n\t\t\t{\n\t\t\t\"firstName\" : \"Mary\",  \n \t\t\t\"lastName\"  : \"Smith\",\n \t\t\t\"age\"      : 32 \n \t\t\t}\n \t\t],                           \n\t    \"sales\": \n\t\t[ \n  \t\t\t{ \n  \t\t\t\"firstName\" : \"Sally\",\n  \t\t\t\"lastName\"  : \"Green\",\n  \t\t\t\"age\"      : 27 \n \t\t\t}, \n  \t\t\t{ \n  \t\t\t\"firstName\" : \"Jim\", \n  \t\t\t\"lastName\"  : \"Galley\",\n  \t\t\t\"age\"       : 41 \n  \t\t\t}\n  \t\t],\n  \t    \"companyName\" : \"First & Best Corporation\",\n  \t    \"address\" : \"Street1, City, State, Country\",\n  \t    \"phoneNumber\" : \"123456789\"\n    }\n}",
+					"raw": "{\n    \"SensitiveFields\" : {\n        \"accounting.lastName\" : \"FE:PersonName\",\n        \"accounting.firstName\" : \"FE:PersonName\",\n        \"accounting.age\" : \"AES:CBC\",\n        \"phoneNumber\" : \"FE:PhoneNumber\",\n        \"accountNumber\" : \"MASK:#\"\n    },\n    \"SensitiveJSON\" : {\n \t    \"accounting\" : \n \t\t[   \n \t\t\t{ \n \t\t\t\"firstName\" : \"John\",  \n \t\t\t\"lastName\"  : \"Doe\",\n \t\t\t\"age\"       : 23 \n \t\t\t},\n\t\t\t{\n\t\t\t\"firstName\" : \"Mary\",  \n \t\t\t\"lastName\"  : \"Smith\",\n \t\t\t\"age\"      : 32 \n \t\t\t}\n \t\t],                           \n\t    \"sales\": \n\t\t[ \n  \t\t\t{ \n  \t\t\t\"firstName\" : \"Sally\",\n  \t\t\t\"lastName\"  : \"Green\",\n  \t\t\t\"age\"      : 27 \n \t\t\t}, \n  \t\t\t{ \n  \t\t\t\"firstName\" : \"Jim\", \n  \t\t\t\"lastName\"  : \"Galley\",\n  \t\t\t\"age\"       : 41 \n  \t\t\t}\n  \t\t],\n  \t    \"companyName\" : \"First & Best Corporation\",\n  \t    \"address\" : \"Street1, City, State, Country\",\n  \t    \"phoneNumber\" : \"123456789\",\n        \"accountNumber\" :  \"23873487342\"\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -89,7 +89,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n   \n  \t    \"passPhrase\" : \"firstTest\",\n  \t    \"expirationSeconds\" : \"3600\"   \n}",
+					"raw": "{\n   \n  \t    \"passPhrase\" : \"firstTest\",\n  \t    \"expirationSeconds\" : \"1200\"   \n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -105,6 +105,63 @@
 					"port": "8081",
 					"path": [
 						"createToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createTokenWithKey",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Correlation-ID",
+						"type": "text",
+						"value": "valurcorid"
+					},
+					{
+						"key": "client_Id",
+						"type": "text",
+						"value": "2715b51ff990432fb1a904957ecbebd4"
+					},
+					{
+						"key": "client_secret",
+						"type": "text",
+						"value": "8fDd95b8F0Bb486f8620B7C1C39bC23e"
+					},
+					{
+						"key": "user_ctx_Id",
+						"type": "text",
+						"value": "website"
+					},
+					{
+						"key": "user_ctx_desc",
+						"type": "text",
+						"value": "Optonal User Contect Cookmedica website "
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \n  \t    \"key\" : \"1234567812345679\",\n  \t    \"passPhrase\" : \"firstTest\",\n  \t    \"expirationSeconds\" : \"3600\"   \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/createTokenWithKey",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"createTokenWithKey"
 					]
 				}
 			},
@@ -146,7 +203,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\n    \"SensitiveFields\" : {\n        \"accounting.lastName\" : \"FE:PersonName\",\n        \"accounting.firstName\" : \"AES:CBC\",\n        \"accounting.age\" : \"MASK:*\",\n        \"phoneNumber\" : \"FE:PhoneNumber\"\n    },\n    \"SensitiveJSON\": {\n\n    \"accounting\": [\n        {\n            \"firstName\": \"ooQ9OqV3wIZeG+MkEk1KFw==\",\n            \"lastName\": \"Ees\",\n            \"age\": \"***************************\"\n        },\n        {\n            \"firstName\": \"/bbIa8Bzy76zsfqnUKWt7A==\",\n            \"lastName\": \"Edmgy\",\n            \"age\": \"***************************\"\n        }\n    ],\n    \"sales\": [\n        {\n            \"firstName\": \"Sally\",\n            \"lastName\": \"Green\",\n            \"age\": 27\n        },\n        {\n            \"firstName\": \"Jim\",\n            \"lastName\": \"Galley\",\n            \"age\": 41\n        }\n    ],\n    \"companyName\": \"First & Best Corporation\",\n    \"address\": \"Street1, City, State, Country\",\n    \"phoneNumber\": \"128388658\"\n}\n}",
+					"raw": "{\n\t\n    \"SensitiveFields\" : {\n        \"accounting.lastName\" : \"FE:PersonName\",\n        \"accounting.firstName\" : \"FE:PersonName\",\n        \"accounting.age\" : \"AES:CBC\",\n        \"phoneNumber\" : \"FE:PhoneNumber\",\n        \"accountNumber\" : \"MASK:#\"\n    },\n    \"SensitiveJSON\": {\n        \"accounting\": [\n            {\n                \"firstName\": \"Uuxm\",\n                \"lastName\": \"Ees\",\n                \"age\": \"DgqjgVvKkfFgVvLGy9j1Eg==\"\n            },\n            {\n                \"firstName\": \"Bfei\",\n                \"lastName\": \"Edmgy\",\n                \"age\": \"Xc9d8H0uNxj7lvoFXC4OBQ==\"\n            }\n        ],\n        \"sales\": [\n            {\n                \"firstName\": \"Sally\",\n                \"lastName\": \"Green\",\n                \"age\": 27\n            },\n            {\n                \"firstName\": \"Jim\",\n                \"lastName\": \"Galley\",\n                \"age\": 41\n            }\n        ],\n        \"companyName\": \"First & Best Corporation\",\n        \"address\": \"Street1, City, State, Country\",\n        \"phoneNumber\": \"128388658\",\n        \"accountNumber\": \"###########\"\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
