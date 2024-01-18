@@ -4,7 +4,7 @@
 
 	<groupId>com.mycompany</groupId>
 	<artifactId>anypoint-data-blind-demo</artifactId>
-	<version>2.0.0</version>
+	<version>2.0.1</version>
 	<packaging>mule-application</packaging>
 
 	<name>anypoint-data-blind-demo</name>
@@ -15,7 +15,7 @@
 
 		<app.runtime>4.3.0</app.runtime>
 		<mule.maven.plugin.version>3.5.4</mule.maven.plugin.version>
-		<datablind.exchange.groupId>087be403-83ed-4643-9c36-cd33bf4d0423</datablind.exchange.groupId>
+		<datablind.exchange.groupId>68a89878-139a-4168-9ca0-8145b0b6feaf</datablind.exchange.groupId>
 	</properties>
 
 	<build>
@@ -39,7 +39,7 @@
 								<dependency>
 									<groupId>io.cipherworks</groupId>
 									<artifactId>cwdatacrypt</artifactId>
-									<version>2.0.0</version>
+									<version>2.0.1</version>
 								</dependency>
 							</additionalDependencies>
 						</plugin>
@@ -66,7 +66,7 @@
 		<dependency>
 			<groupId>${datablind.exchange.groupId}</groupId>
 			<artifactId>cwconnector</artifactId>
-			<version>2.0.5</version>
+			<version>2.0.6</version>
 			<classifier>mule-plugin</classifier>
 		</dependency>
 	</dependencies>

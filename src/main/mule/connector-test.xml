@@ -11,22 +11,22 @@ http://www.mulesoft.org/schema/mule/crypto http://www.mulesoft.org/schema/mule/c
 	<flow name="blindJSON" doc:id="2320e0de-0214-42ef-8252-da76d34a55af" >
 		<http:listener doc:name="Listener" doc:id="80124f62-ee35-40df-9439-4a8ddde85fc2" config-ref="HTTP_Listener_config" path="/blindJSON" allowedMethods="GET" />
 		<set-variable value='#["12345"]' doc:name="Tweak" doc:id="5222c65d-7d9c-4fbc-a93c-3aa49931e7f9" variableName="tweak" />
-		<cw:encrypt-json doc:name="Encrypt json" doc:id="d2ae988c-ac13-4066-b5d0-b8ba9a855e15" config-ref="CW_Config" arg1="#[write(payload.SensitiveFields, 'application/json')]" arg2="#[write(payload.SensitiveJSON, 'application/json')]" arg3="#[vars.tweak]" arg4="#[attributes.headers.overRideToken]" arg5="#[attributes.headers.tokenPassPhrase]"/>
+		<cw:encrypt-json doc:name="Encrypt json" doc:id="365b821f-e3a4-4751-b97a-460d8d9a2f0e" config-ref="CW_Config" sensitiveFields="#[write(payload.SensitiveFields, 'application/json')]" sensitiveJson="#[write(payload.SensitiveJSON, 'application/json')]" tweak="#[vars.tweak]" overRideToken="#[attributes.headers.overRideToken]" passPhrase="#[attributes.headers.tokenPassPhrase]"/>
 	
 </flow>
 	<flow name="clearJSON" doc:id="8fcf8e85-511c-4474-8378-e4e6acfde524" >
 		<http:listener doc:name="Listener" doc:id="a5d62a39-1576-4d3b-8d47-a56ec3bef141" config-ref="HTTP_Listener_config" path="/clearJSON" />
 		<set-variable value='#["12345"]' doc:name="Tweak" doc:id="f7286e2b-82c8-4c86-a8f1-683d13327479" variableName="tweak" />
-		<cw:decrypt-json doc:name="Decrypt json" doc:id="f0f0b345-f589-4710-b2a3-317a8d3c2fad" config-ref="CW_Config" arg1="#[write(payload.SensitiveFields, 'application/json')]" arg2="#[write(payload.SensitiveJSON, 'application/json')]" arg3="#[vars.tweak]" arg4="#[attributes.headers.tokenPassPhrase]" arg5="#[attributes.headers.overRideToken]"/>
+		<cw:decrypt-json doc:name="Decrypt json" doc:id="9e22313e-c624-41c3-805e-19705e21bb59" config-ref="CW_Config" sensitiveFields="#[write(payload.SensitiveFields, 'application/json')]" encryptedJson="#[write(payload.SensitiveJSON, 'application/json')]" tweak="#[vars.tweak]"/>
 	
 </flow>
 	<flow name="createToken" doc:id="59b47141-0d1f-4e0b-92ce-579058aa0474" >
 		<http:listener doc:name="Listener" doc:id="ced3403e-bd05-41ad-acc2-adcbe85fdfc8" config-ref="HTTP_Listener_config" path="/createToken"/>
-		<cw:override-token doc:name="Override token" doc:id="1d9e8b72-aaa0-444f-bb0f-53a6a82c402d" config-ref="CW_Config" arg1="#[payload.passPhrase]" arg2="#[payload.expirationSeconds]"/>
+		<cw:override-token doc:name="Override token" doc:id="0ddef8bb-b915-4bdf-aa82-9b36c6239b75" config-ref="CW_Config" passPhrase="#[payload.passPhrase]" expirationSecs="#[payload.expirationSeconds]"/>
 	</flow>
 	<flow name="createTokenwithKey" doc:id="9a87e737-acc5-497c-959b-96333f2b3e9b" >
 		<http:listener doc:name="Copy_of_Listener" doc:id="c3532777-47ed-439b-b37c-eb417bfc1361" config-ref="HTTP_Listener_config" path="/createTokenWithKey" />
-		<cw:override-token-with-new-key doc:name="Override token with new key" doc:id="419315a2-84bf-4583-b19f-bbd9b189aa3e" arg0="#[payload.key]" arg1="#[payload.passPhrase]" arg2="#[payload.expirationSeconds]"/>
+		<cw:override-token-with-new-key doc:name="Override token with new key" doc:id="bcb96a12-3a86-4405-8c21-38303254133e" key="#[payload.key]" passPhrase="#[payload.passPhrase]" expirationSecs="#[payload.expirationSeconds]"/>
 	</flow>
 
 </mule>
